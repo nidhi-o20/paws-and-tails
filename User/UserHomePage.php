@@ -3,12 +3,13 @@ ob_start();
 session_start();
 error_reporting(0);
 ?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Paws and Tails | Home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,7 +19,12 @@ error_reporting(0);
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../style/style.css">
+    <link rel="manifest" href="../manifest.json" />
+    <link rel="apple-touch-icon" href="../assets/snoopy2.png">
     <script src="https://kit.fontawesome.com/2c558ff8c9.js" crossorigin="anonymous"></script>
+    <script defer data-domain="pawsandtailsproject.000webhostapp.com" src="https://plausible.io/js/plausible.js"></script>
+    <meta name="theme-color" content="#e3f2fd" />
+    <meta name="description" content="Paws and Tails - The online dog store">
     <style>
         .wrap {
             display: grid;
@@ -30,14 +36,22 @@ error_reporting(0);
 
         .wrapper {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 2fr);
             grid-auto-rows: minmax(100, auto);
+        }
+
+        @media screen and (max-width: 600px) {
+            .wrapper {
+                display: grid;
+                grid-template-columns: repeat(1, 3fr);
+                grid-auto-rows: minmax(100, auto);
+            }
         }
 
         .card {
             position: relative;
-            width: 17rem;
-            height: 22rem;
+            width: 30vw;
+            height: 50vh;
             border-radius: 20px;
             background-position: center center;
             overflow: hidden;
@@ -82,7 +96,7 @@ error_reporting(0);
         .wrapper>.card>img {
             height: 50%;
             object-fit: contain;
-            margin-top: 10px
+            margin-top: 20px
         }
     </style>
 </head>
@@ -91,7 +105,7 @@ error_reporting(0);
     <header>
         <h1>
             <icon style="padding-right:10px ">
-                <img src="../assets/snoopy2.png" style="width:6% ;">
+                <img src="../assets/snoopy2.png" alt="Website logo" style="max-width:10% ;">
             </icon>
             <a href="UserHomePage.php" style="text-decoration:none !important; color:inherit">Paws and Tails</a>
         </h1>
@@ -140,10 +154,10 @@ error_reporting(0);
             </div>
         </div>
     </nav>
-    <img src="../assets/home2.png" style="width:100%;margin-bottom:2%">
+    <img class="banner" src="../assets/home2.png" alt="Banner Image" style="width:100%;margin-bottom:2%">
     <?php
 
-    $productsql = "select * from `dog_products` order by dproduct_id DESC LIMIT 3";
+    $productsql = "select * from `dog_products` order by dproduct_id DESC LIMIT 4";
     include('../DataBase/connection.php');
     $result = mysqli_query($conn, $productsql);
     $rows = mysqli_num_rows($result);
@@ -151,8 +165,8 @@ error_reporting(0);
 
 
     ?>
-        <h3 style="position: relative;top: 5%; margin-left:3% ; text-decoration: underline;"><b>What's New?</b></h3>
-        <div class="wrapper" style="position: relative; width:1000px;top:10%;left:15% ;">
+        <h3 style="position: relative;top: 5%; margin-left:1% ; text-decoration: underline;"><b>What's New?</b></h3>
+        <div class="wrapper" style="position: relative; width:50%;top:10%;left:5% ;">
 
             <?php
             while ($row = mysqli_fetch_assoc($result)) {
@@ -160,8 +174,8 @@ error_reporting(0);
 
             ?>
 
-                <div class="card">
-                    <img src="<?php echo $image; ?>" class="card-img-top" alt="...">
+                <div class="card" style="width:90%">
+                    <img alt="product image" src="<?php echo $image; ?>" class="card-img-top" alt="...">
                     <div class="card-body">
                         <p class="card-title"><b>Product:</b> <?php echo $row['name'] ?></p>
                         <p class="card-text"><b>Brand:</b> <?php echo $row['brand'] ?></p>
@@ -170,7 +184,7 @@ error_reporting(0);
 
                     <div class="card__inner d-grid">
 
-                        <a class="btn btn-outline-light btn-block" style="height: 50px; margin-top:90%" href='<?php echo 'UserViewProduct.php?id=' . $row['dproduct_id']; ?>'><b>View</b></a>
+                        <a class="btn btn-outline-light btn-block" style="height: 30%; margin-top:50%" href='<?php echo 'UserViewProduct.php?id=' . $row['dproduct_id']; ?>'><b>View</b></a>
                         <a class=" btn btn-outline-light btn-block" style="height: 50px;" href='<?php echo 'AddToCart.php?productid=' . $row['dproduct_id']; ?>'><b>Add to Cart</b></a>
 
                     </div>
@@ -203,8 +217,8 @@ error_reporting(0);
                 $image2 = !empty($row['photo2']) ? "../assets/blogs/" . $row['photo2'] : "https://via.placeholder.com/50.png/09f/666";
 
             ?>
-                <img style="width: 30em;" src="<?php echo $image1; ?>">
-                <img style="width: 30em;" src="<?php echo $image2; ?>">
+                <img style="width: 30vw;" alt="Blog1" src="<?php echo $image1; ?>">
+                <img style="width: 30vw;" alt="Blog2" src="<?php echo $image2; ?>">
 
 
             <?php
@@ -218,7 +232,7 @@ error_reporting(0);
     }
     ?>
 
-
+    <script src="../app.js"></script>
 
 </body>
 

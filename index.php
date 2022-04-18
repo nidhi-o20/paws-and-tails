@@ -16,7 +16,11 @@ error_reporting(0);
   <link rel="stylesheet" href="style/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="manifest" href="/manifest.json" />
   <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet" />
+  <script defer data-domain="pawsandtailsproject.000webhostapp.com" src="https://plausible.io/js/plausible.js"></script>
+
+
 
 </head>
 
