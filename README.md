@@ -6,7 +6,7 @@ Paws and Tails provides an e-commerce platform for getting a dog or buying produ
 
 This application was created as a Mini Project in web development for Semester-5 IT of MU.
 
-#### Hosted using 000webhost.com : <a href="http://pawsandtailsproject.000webhostapp.com/" target="_blank">Paws and Tails</a>
+#### Hosted using 000webhost.com : <a href="https://projectpawsandtails.000webhostapp.com/" target="_blank">Paws and Tails</a>
 
 ## Users of System :
 
